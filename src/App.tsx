@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { UserPlus, Users, RefreshCw } from 'lucide-react';
+import { UserPlus, Users, RefreshCw, Trash2 } from 'lucide-react';
 
 interface Player {
   id: string;
@@ -68,6 +68,10 @@ function App() {
     return new Intl.NumberFormat().format(grade);
   };
 
+  const removePlayer = (id: string) => {
+    setPlayers(players.filter(player => player.id !== id));
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 py-8 px-4">
       <div className="max-w-4xl mx-auto">
@@ -113,8 +117,15 @@ function App() {
               {players.map((player) => (
                 <div
                   key={player.id}
-                  className="bg-gray-50 p-3 rounded border"
+                  className="bg-gray-50 p-3 rounded border relative"
                 >
+                  <button 
+                    onClick={() => removePlayer(player.id)}
+                    className="absolute top-1 right-1 text-red-500 hover:text-red-700"
+                    title="Remove player"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
                   <div className="font-medium">{player.name}</div>
                   <div className="text-sm text-gray-600">Grade: {formatGrade(player.grade)}</div>
                 </div>
