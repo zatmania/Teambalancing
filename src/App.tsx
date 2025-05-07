@@ -137,7 +137,6 @@ function App() {
             <button
               onClick={balanceTeams}
               className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 flex items-center gap-2"
-              disabled={players.length !== 10}
             >
               <RefreshCw className="h-5 w-5" />
               Balance Teams
